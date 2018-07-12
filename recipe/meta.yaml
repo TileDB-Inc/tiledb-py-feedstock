@@ -1,6 +1,6 @@
 {% set name = "tiledb" %}
-{% set version = "0.1.1" %}
-{% set sha256 = "e6734e746d7ce13f826bdedf77be7fec8c960098fd2f2152608f6134e8957a42" %}
+{% set version = "0.2.0" %}
+{% set sha256 = "f538242056e786a933abe9ccf1406033ae387a293c1723a9dda02496db4eccb2" %}
 
 package:
   name: tiledb-py
@@ -13,24 +13,25 @@ source:
 
 build:
   number: 1
-  skip: true  # [win or py2k]
+  skip: true  # [osx or win]
   script: python setup.py install --tiledb="$PREFIX" --single-version-externally-managed --record record.txt
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   host:
     - python
     - setuptools >18.0
     - setuptools_scm >1.5.4
     - cython
     - numpy        # [not (win and (py35 or py36))]
-    - tiledb 1.2.*
+    - tiledb 1.3.*
 
   run:
     - python
     - {{ pin_compatible('numpy') }}   # [not (win and (py35 or py36))]
-    - tiledb 1.2.*
+    - tiledb 1.3.*
 
 test:
   imports:
