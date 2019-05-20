@@ -1,5 +1,5 @@
 {% set name = "tiledb" %}
-  {% set version = "0.4.1" %}
+{% set version = "0.4.2" %}
 {% set sha256 = "6b97d45a00cc12366a599a2196489fcbdd4c1fad17b198cbeec7a2754d44ad31" %}
 
 package:
@@ -7,9 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  #fn: {{ name }}-{{ version }}.tar.gz
+  #url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  #sha256: {{ sha256 }}
+  git_url: https://github.com/TileDB-Inc/TileDB-Py
+  git_rev: 02d95460905b09765dd34de3786fdf1a8ebc1ce7
 
 build:
   number: 0
