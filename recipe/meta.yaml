@@ -1,5 +1,5 @@
 {% set name = "tiledb" %}
-{% set version = "0.4.3" %}
+{% set version = "0.4.4" %}
 {% set sha256 = "ec8c9e07804af34e4db0a23503d0f58635b05e71252aff4a528560bebbb5bee4" %}
 
 package:
@@ -8,8 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  #url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  url: https://github.com/TileDB-Inc/TileDB-Py/releases/download/untagged-06196a4b200c386dd976/tiledb-0.4.4.tar.gz
+  url: https://test.pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
