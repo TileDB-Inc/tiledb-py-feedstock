@@ -44,15 +44,14 @@ requirements:
     - contextvars  # [py == 36]
     - tiledb 2.2.*
 
-{% if python_impl != 'pypy' %}
 test:
   requires:
-    - hypothesis
-    - pytest
-    - pyarrow 3.* # pin for 0.8.8 due to segfault w/ arrow 4.0
-    - pandas
-    - dataclasses  # [py == 36]
-    - psutil
+    - hypothesis  # [ python_impl != 'pypy' ]
+    - pytest  # [ python_impl != 'pypy' ]
+    # pin for 0.8.8 due to segfault w/ arrow 4.0
+    - pyarrow 3.*  # [ python_impl != 'pypy' ]
+    - pandas  # [ python_impl != 'pypy' ]
+    - psutil  # [ python_impl != 'pypy' ]
   imports:
     - tiledb
   source_files:
@@ -60,8 +59,7 @@ test:
   commands:
     - python -c "import tiledb; tiledb.libtiledb.version()"
     - python -c "import tiledb; assert tiledb.VFS().supports('s3')"
-    - pytest -s -v --ignore-glob='*_examples.py' --ignore-glob='*_dask.py'
-{% endif %}
+    - pytest -s -v --ignore-glob='*_examples.py' --ignore-glob='*_dask.py' #  [ python_impl != 'pypy' ]
 
 about:
   home: http://tiledb.io
