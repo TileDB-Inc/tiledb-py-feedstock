@@ -7,9 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  #fn: {{ name }}-{{ version }}.tar.gz
+  #url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  git_url: https://github.com/TileDB-Inc/TileDB-Py
+  git_rev: "release-0.9.2"
+  #sha256: {{ sha256 }}
 
 build:
   number: 3
