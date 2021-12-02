@@ -1,15 +1,10 @@
-{% set name = "tiledb" %}
-{% set version = "0.11.2" %}
-{% set sha256 = "3f16f1ff78aa05364bea0b9a4f540d88ed01bf88aac261f3323f5a156e53950b" %}
-
 package:
   name: tiledb-py
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  git_url: https://github.com/TileDB-Inc/TileDB-Py.git
+  git_rev: dev
 
 build:
   number: 1
