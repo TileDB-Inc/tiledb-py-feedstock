@@ -11,7 +11,7 @@ MINIFORGE_HOME=${MINIFORGE_HOME:-${HOME}/miniforge3}
 ( startgroup "Installing a fresh version of Miniforge" ) 2> /dev/null
 
 MINIFORGE_URL="https://github.com/conda-forge/miniforge/releases/latest/download"
-MINIFORGE_FILE="Mambaforge-MacOSX-$(uname -m).sh"
+MINIFORGE_FILE="Miniforge3-MacOSX-$(uname -m).sh"
 curl -L -O "${MINIFORGE_URL}/${MINIFORGE_FILE}"
 rm -rf ${MINIFORGE_HOME}
 bash $MINIFORGE_FILE -b -p ${MINIFORGE_HOME}
@@ -92,16 +92,11 @@ else
     command -v inspect_artifacts >/dev/null 2>&1 && inspect_artifacts || echo "inspect_artifacts needs conda-forge-ci-setup >=4.6.0"
 
     ( endgroup "Inspecting artifacts" ) 2> /dev/null
-    ( startgroup "Validating outputs" ) 2> /dev/null
-
-    validate_recipe_outputs "${FEEDSTOCK_NAME}"
-
-    ( endgroup "Validating outputs" ) 2> /dev/null
 
     ( startgroup "Uploading packages" ) 2> /dev/null
 
     if [[ "${UPLOAD_PACKAGES}" != "False" ]] && [[ "${IS_PR_BUILD}" == "False" ]]; then
-      upload_package --validate --feedstock-name="${FEEDSTOCK_NAME}" ./ ./recipe ./.ci_support/${CONFIG}.yaml
+      upload_package  ./ ./recipe ./.ci_support/${CONFIG}.yaml
     fi
 
     ( endgroup "Uploading packages" ) 2> /dev/null
