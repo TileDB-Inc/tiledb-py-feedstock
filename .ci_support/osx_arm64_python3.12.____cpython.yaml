@@ -7,13 +7,13 @@ c_stdlib:
 c_stdlib_version:
 - '11.0'
 channel_sources:
-- conda-forge
+- tiledb/label/nightlies,conda-forge
 channel_targets:
-- conda-forge main
+- tiledb nightlies
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '17'
+- '18'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:

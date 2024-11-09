@@ -7,11 +7,11 @@ c_stdlib_version:
 cdt_arch:
 - aarch64
 cdt_name:
-- cos7
+- conda
 channel_sources:
-- conda-forge
+- tiledb/label/nightlies,conda-forge
 channel_targets:
-- conda-forge main
+- tiledb nightlies
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -33,8 +33,6 @@ target_platform:
 tiledb:
 - '2.26'
 zip_keys:
-- - c_stdlib_version
-  - cdt_name
 - - python
   - numpy
   - python_impl
