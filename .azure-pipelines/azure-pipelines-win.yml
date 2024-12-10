@@ -8,12 +8,6 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_numpy2.0python3.10.____cpython:
-        CONFIG: win_64_numpy2.0python3.10.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_numpy2.0python3.11.____cpython:
-        CONFIG: win_64_numpy2.0python3.11.____cpython
-        UPLOAD_PACKAGES: 'True'
       win_64_numpy2.0python3.12.____cpython:
         CONFIG: win_64_numpy2.0python3.12.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -36,6 +30,7 @@ jobs:
       displayName: Run Windows build
       env:
         MINIFORGE_HOME: $(MINIFORGE_HOME)
+        CONDA_BLD_PATH: $(CONDA_BLD_PATH)
         PYTHONUNBUFFERED: 1
         CONFIG: $(CONFIG)
         CI: azure
@@ -45,5 +40,3 @@ jobs:
         UPLOAD_PACKAGES: $(UPLOAD_PACKAGES)
         UPLOAD_TEMP: $(UPLOAD_TEMP)
         BINSTAR_TOKEN: $(BINSTAR_TOKEN)
-        FEEDSTOCK_TOKEN: $(FEEDSTOCK_TOKEN)
-        STAGING_BINSTAR_TOKEN: $(STAGING_BINSTAR_TOKEN)
