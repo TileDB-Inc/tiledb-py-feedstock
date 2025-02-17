@@ -5,7 +5,7 @@ package:
 
 source:
   git_url: https://github.com/TileDB-Inc/TileDB-Py.git
-  git_rev: 3bafb00bb31d7048d7ffda84e2479ecbd8a7d808
+  git_rev: agis/nightlies-test
   git_depth: -1
 build:
   number: 0
