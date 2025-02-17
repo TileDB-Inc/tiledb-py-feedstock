@@ -8,12 +8,6 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_numpy2.0python3.10.____cpython:
-        CONFIG: win_64_numpy2.0python3.10.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_numpy2.0python3.11.____cpython:
-        CONFIG: win_64_numpy2.0python3.11.____cpython
-        UPLOAD_PACKAGES: 'True'
       win_64_numpy2.0python3.12.____cpython:
         CONFIG: win_64_numpy2.0python3.12.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -45,7 +39,5 @@ jobs:
         sha: $(Build.SourceVersion)
         UPLOAD_PACKAGES: $(UPLOAD_PACKAGES)
         UPLOAD_TEMP: $(UPLOAD_TEMP)
-        UPLOAD_ON_BRANCH: main
+        UPLOAD_ON_BRANCH: nightly-build
         BINSTAR_TOKEN: $(BINSTAR_TOKEN)
-        FEEDSTOCK_TOKEN: $(FEEDSTOCK_TOKEN)
-        STAGING_BINSTAR_TOKEN: $(STAGING_BINSTAR_TOKEN)
