@@ -48,7 +48,7 @@ test:
   commands:
     - python -c "import tiledb; tiledb.libtiledb.version()"
     - python -c "import tiledb; assert tiledb.VFS().supports('s3')"
-    - pytest -v --ignore-glob='*_examples.py' --ignore-glob='*_dask.py'
+    - env SEGFAULT_SIGNALS="abrt segv" LD_PRELOAD=/lib64/libSegFault.so pytest -v --ignore-glob='*_examples.py' --ignore-glob='*_dask.py'
 {% endif %}
 
 about:
