@@ -8,14 +8,6 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_numpy2.0python3.10.____cpython:
-        CONFIG: linux_64_numpy2.0python3.10.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_64_numpy2.0python3.11.____cpython:
-        CONFIG: linux_64_numpy2.0python3.11.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_64_numpy2.0python3.12.____cpython:
         CONFIG: linux_64_numpy2.0python3.12.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -28,14 +20,6 @@ jobs:
         CONFIG: linux_64_numpy2python3.13.____cp313
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_numpy2.0python3.10.____cpython:
-        CONFIG: linux_aarch64_numpy2.0python3.10.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_aarch64_numpy2.0python3.11.____cpython:
-        CONFIG: linux_aarch64_numpy2.0python3.11.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_aarch64_numpy2.0python3.12.____cpython:
         CONFIG: linux_aarch64_numpy2.0python3.12.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -46,14 +30,6 @@ jobs:
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_aarch64_numpy2python3.13.____cp313:
         CONFIG: linux_aarch64_numpy2python3.13.____cp313
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_ppc64le_numpy2.0python3.10.____cpython:
-        CONFIG: linux_ppc64le_numpy2.0python3.10.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-      linux_ppc64le_numpy2.0python3.11.____cpython:
-        CONFIG: linux_ppc64le_numpy2.0python3.11.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
       linux_ppc64le_numpy2.0python3.12.____cpython:
@@ -87,7 +63,7 @@ jobs:
         export sha=$(Build.SourceVersion)
         export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
         export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
-        export UPLOAD_ON_BRANCH="main"
+        export UPLOAD_ON_BRANCH="nightly-build"
         if [[ "${BUILD_REASON:-}" == "PullRequest" ]]; then
           export IS_PR_BUILD="True"
         else
@@ -97,5 +73,3 @@ jobs:
     displayName: Run docker build
     env:
       BINSTAR_TOKEN: $(BINSTAR_TOKEN)
-      FEEDSTOCK_TOKEN: $(FEEDSTOCK_TOKEN)
-      STAGING_BINSTAR_TOKEN: $(STAGING_BINSTAR_TOKEN)
