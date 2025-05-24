@@ -14,3 +14,5 @@ provider:
   win: azure
 test: native_and_emulated
 upload_on_branch: main
+conda_forge_output_validation: False
+upload_on_branch: nightly-build
