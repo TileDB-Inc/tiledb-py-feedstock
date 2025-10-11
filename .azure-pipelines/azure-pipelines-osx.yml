@@ -20,9 +20,6 @@ jobs:
       osx_64_python3.13.____cp313:
         CONFIG: osx_64_python3.13.____cp313
         UPLOAD_PACKAGES: 'True'
-      osx_64_python3.14.____cp314:
-        CONFIG: osx_64_python3.14.____cp314
-        UPLOAD_PACKAGES: 'True'
       osx_64_python3.9.____cpython:
         CONFIG: osx_64_python3.9.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -37,9 +34,6 @@ jobs:
         UPLOAD_PACKAGES: 'True'
       osx_arm64_python3.13.____cp313:
         CONFIG: osx_arm64_python3.13.____cp313
-        UPLOAD_PACKAGES: 'True'
-      osx_arm64_python3.14.____cp314:
-        CONFIG: osx_arm64_python3.14.____cp314
         UPLOAD_PACKAGES: 'True'
       osx_arm64_python3.9.____cpython:
         CONFIG: osx_arm64_python3.9.____cpython
@@ -57,7 +51,7 @@ jobs:
       export OSX_FORCE_SDK_DOWNLOAD="1"
       export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
       export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
-      export UPLOAD_ON_BRANCH="main"
+      export UPLOAD_ON_BRANCH="nightly-build"
       if [[ "${BUILD_REASON:-}" == "PullRequest" ]]; then
         export IS_PR_BUILD="True"
       else
@@ -67,5 +61,3 @@ jobs:
     displayName: Run OSX build
     env:
       BINSTAR_TOKEN: $(BINSTAR_TOKEN)
-      FEEDSTOCK_TOKEN: $(FEEDSTOCK_TOKEN)
-      STAGING_BINSTAR_TOKEN: $(STAGING_BINSTAR_TOKEN)
