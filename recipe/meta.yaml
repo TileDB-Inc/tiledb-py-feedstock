@@ -1,6 +1,6 @@
 {% set name = "tiledb" %}
-{% set version = "0.35.1" %}
-{% set sha256 = "9cfab14f2a4c4d6aa58abe484ff55703172c1d51b1b89a7e59a6d07aaf4cdfd0" %}
+{% set version = "0.35.2" %}
+{% set sha256 = "13a7d35dd6270272dc309d88fa392377e0212785f1e9d0a5c0794d2782cd6abc" %}
 
 package:
   name: tiledb-py
@@ -16,7 +16,7 @@ source:
     - datetime64-error-message.patch
 
 build:
-  number: 1
+  number: 0
 requirements:
   build:
     - {{ compiler('cxx') }}
