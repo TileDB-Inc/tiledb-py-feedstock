@@ -10,10 +10,6 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    # Update test to accommodate py314 until it is incorporated upstream
-    # https://github.com/TileDB-Inc/TileDB-Py/pull/2256
-    - datetime64-error-message.patch
 
 build:
   number: 0
