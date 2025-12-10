@@ -32,7 +32,7 @@ requirements:
     - python
     - numpy
     - pybind11
-    - tiledb >=2.29.0,<2.30
+    - tiledb >=2.30.0,<2.31
   run:
     - python
     - packaging
