@@ -29,4 +29,4 @@ python_impl:
 target_platform:
 - osx-arm64
 tiledb:
-- '2.29'
+- '2.30'
