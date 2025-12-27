@@ -1,18 +1,14 @@
-{% set name = "tiledb" %}
-{% set version = "0.36.0" %}
-{% set sha256 = "69d519c25853127a89e6827b1b0eae372af3f4f0a284b8d8126ae1c29ad1aed0" %}
-
+# nightly build
 package:
   name: tiledb-py
-  version: {{ version }}
+  version: 0.36.0.2025_12_26
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
-
+  git_url: https://github.com/TileDB-Inc/TileDB-Py.git
+  git_rev: 6d326a2e0371042d0d07688cfe1b3edbabd17fd7
+  git_depth: -1
 build:
-  number: 1
+  number: 0
 requirements:
   build:
     - {{ compiler('cxx') }}
@@ -32,7 +28,7 @@ requirements:
     - python
     - numpy
     - pybind11
-    - tiledb >=2.30.0,<2.31
+    - tiledb 2.*
   run:
     - python
     - packaging
@@ -60,14 +56,16 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: Python interface to the TileDB sparse and dense multi-dimensional array storage manager
+  summary: Python interface to the TileDB sparse and dense multi-dimensional 
+    array storage manager
   description: |
     TileDB-Py is the python interface to the TileDB array storage manager.
     TileDB  is an efficient multi-dimensional array management system which introduces
     a novel on-disk format that can store dense and sparse array data with
     support for fast reads and updates and reads. It features excellent compression, and an efficient
     parallel I/O system with high scalability.
-  doc_url: https://tiledb-inc-tiledb.readthedocs-hosted.com/projects/tiledb-py/en/stable/python-api.html
+  doc_url: 
+    https://tiledb-inc-tiledb.readthedocs-hosted.com/projects/tiledb-py/en/stable/python-api.html
   dev_url: https://github.com/TileDB-Inc/TileDB-Py
 
 extra:
