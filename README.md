@@ -421,5 +421,4 @@ Feedstock Maintainers
 * [@ihnorton](https://github.com/ihnorton/)
 * [@jdblischak](https://github.com/jdblischak/)
 * [@kounelisagis](https://github.com/kounelisagis/)
-* [@shelnutt2](https://github.com/shelnutt2/)
 
