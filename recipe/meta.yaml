@@ -1,6 +1,6 @@
 {% set name = "tiledb" %}
-{% set version = "0.36.0" %}
-{% set sha256 = "69d519c25853127a89e6827b1b0eae372af3f4f0a284b8d8126ae1c29ad1aed0" %}
+{% set version = "0.36.1" %}
+{% set sha256 = "f7e1088e277efb8bf868842698b7c2e0c5cc4ad9bb24eb0efd6bb1a499832f40" %}
 
 package:
   name: tiledb-py
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
 requirements:
   build:
     - {{ compiler('cxx') }}
@@ -36,6 +36,8 @@ requirements:
   run:
     - python
     - packaging
+  run_constrained:
+    - pandas <3
 
 {% if python_impl != 'pypy' %}
 test:
@@ -74,5 +76,4 @@ extra:
   recipe-maintainers:
     - ihnorton
     - jdblischak
-    - shelnutt2
     - kounelisagis
