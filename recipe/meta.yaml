@@ -36,6 +36,8 @@ requirements:
   run:
     - python
     - packaging
+  run_constrained:
+    - pandas <3
 
 {% if python_impl != 'pypy' %}
 test:
