@@ -14,3 +14,7 @@ is_python_min:
   - false
   - false
   - false
+channel_sources:
+  - tiledb/label/nightlies,conda-forge
+channel_targets:
+  - tiledb nightlies
