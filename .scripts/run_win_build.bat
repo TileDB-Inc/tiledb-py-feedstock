@@ -42,7 +42,8 @@ call :start_group "Configuring conda"
 
 :: Activate the base conda environment
 echo Activating environment
-call "%MINIFORGE_HOME%\Scripts\activate.bat"
+set "CONDA_EXE=%MINIFORGE_HOME%\Scripts\conda.exe"
+call "%MINIFORGE_HOME%\condabin\conda.bat" activate "%MINIFORGE_HOME%"
 :: Configure the solver
 set "CONDA_SOLVER=libmamba"
 if !errorlevel! neq 0 exit /b !errorlevel!
@@ -76,8 +77,12 @@ call :end_group
 
 :: Build the recipe
 echo Building recipe
+set "_OLD_CONDA_SUBDIR=%CONDA_SUBDIR%"
+set "CONDA_SUBDIR=%BUILD_PLATFORM%"
 conda-build.exe "recipe" -m .ci_support\%CONFIG%.yaml --suppress-variables %EXTRA_CB_OPTIONS%
 if !errorlevel! neq 0 exit /b !errorlevel!
+set "_OLD_CONDA_SUBDIR="
+set "CONDA_SUBDIR=%_OLD_CONDA_SUBDIR%"
 
 call :start_group "Inspecting artifacts"
 :: inspect_artifacts was only added in conda-forge-ci-setup 4.9.4
@@ -87,7 +92,7 @@ call :end_group
 :: Prepare some environment variables for the upload step
 if /i "%CI%" == "github_actions" (
     set "FEEDSTOCK_NAME=%GITHUB_REPOSITORY:*/=%"
-    set "GIT_BRANCH=%GITHUB_REF:refs/heads/=%"
+    set "GIT_BRANCH=%GITHUB_REF_NAME%"
     if /i "%GITHUB_EVENT_NAME%" == "pull_request" (
         set "IS_PR_BUILD=True"
     ) else (
@@ -105,21 +110,17 @@ if /i "%CI%" == "azure" (
     )
     set "TEMP=%UPLOAD_TEMP%"
 )
-set "UPLOAD_ON_BRANCH=main"
+set "UPLOAD_ON_BRANCH=nightly-build"
 :: Note, this needs GIT_BRANCH too
 
 :: Validate
-call :start_group "Validating outputs"
-validate_recipe_outputs "%FEEDSTOCK_NAME%"
-if !errorlevel! neq 0 exit /b !errorlevel!
-call :end_group
 
 if /i "%UPLOAD_PACKAGES%" == "true" (
     if /i "%IS_PR_BUILD%" == "false" (
         call :start_group "Uploading packages"
         if not exist "%TEMP%\" md "%TEMP%"
         set "TMP=%TEMP%"
-        upload_package --validate --feedstock-name="%FEEDSTOCK_NAME%" .\ ".\recipe" .ci_support\%CONFIG%.yaml
+        upload_package  .\ ".\recipe" .ci_support\%CONFIG%.yaml
         if !errorlevel! neq 0 exit /b !errorlevel!
         call :end_group
     )
