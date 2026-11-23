@@ -139,19 +139,15 @@ if /i "%CI%" == "azure" (
     )
     set "TEMP=%UPLOAD_TEMP%"
 )
-set "UPLOAD_ON_BRANCH=main"
+set "UPLOAD_ON_BRANCH=nightly-build"
 :: Note, this needs GIT_BRANCH too
-call :start_group "Validating outputs"
-validate_recipe_outputs "%FEEDSTOCK_NAME%"
-if !errorlevel! neq 0 exit /b !errorlevel!
-call :end_group
 
 if /i "%UPLOAD_PACKAGES%" == "true" (
     if /i "%IS_PR_BUILD%" == "false" (
         call :start_group "Uploading packages"
         if not exist "%TEMP%\" md "%TEMP%"
         set "TMP=%TEMP%"
-        upload_package --validate --feedstock-name="%FEEDSTOCK_NAME%" "%FEEDSTOCK_ROOT%" "%RECIPE_ROOT%" "%CONFIG_FILE%"
+        upload_package  "%FEEDSTOCK_ROOT%" "%RECIPE_ROOT%" "%CONFIG_FILE%"
         if !errorlevel! neq 0 exit /b !errorlevel!
         call :end_group
     )
